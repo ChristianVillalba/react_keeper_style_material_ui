@@ -23,7 +23,8 @@ In this module, we are going to work in the apparence.
 * Material UI - Icons
 * Expanding features for our outputs
 * Material UI - Buttons
-
+* Floating Action Button
+* Zoom Component
 
 ---
 ---
@@ -71,11 +72,47 @@ So we can even add Components that actually have functionality that we didn't ev
 Change the Add button so that instead of saying the word "Add" I want to use an Add Icon from material icons:
 We search for the icon,
 We copy the import Statement and we paste it in our CreateArea.jsx
-We use the new imported Add Component
-
-Now notice how in the final version this add is a lot fancier:    
-Hover over functionality, animations...
-We can achieve this with floating action button that comes from the material UI package, instead of using our own button.
+```javascript
+import Add from "@material-ui/icons/Add";
+```
+We use the new imported Add Component (the icon) inside our button.
+```javascript
+        <button onClick={submitNote}>
+          <Add />
+        </button>
+```
 
 #### Material-UI Buttons
+Now notice how in the final version this Add Buttoon is a lot fancier:    
+Hover over functionality, animations...
+Instead of using our own button, we can use the **Floating Action Button (FAB)** that comes from the material UI package.
 
+We use the import statement in our CreateArea.jsx
+```javascript
+import Fab from "@material-ui/core/Fab";
+``` 
+and now we can use the new imported Fab Component (Floating Action Button)
+```javascript
+        <Fab onClick={submitNote}>
+          <Add />
+        </Fab>
+```
+
+#### Zoom Component
+The Floating Action Button animating onto the screen as an expanding piece of material.     
+this is done using a Zoom transition.       
+Checking out the code, this is done just wraping the Fab inside a **Zoom Component**
+
+We use the import statement in our CreateArea.jsx
+```javascript
+import Zoom from "@material-ui/core/Zoom";
+``` 
+and now we can use the new imported Zoom Component with this **in** Prop.     
+This is a True or False Boolean
+```javascript
+        <Zoom in={true}>
+          <Fab onClick={submitNote}>
+            <Add />
+          </Fab>
+        </Zoom>
+```
