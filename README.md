@@ -25,6 +25,7 @@ In this module, we are going to work in the apparence.
 * Material UI - Buttons
 * Floating Action Button
 * Zoom Component
+* Createing Effects: Conditional Rendering
 
 ---
 ---
@@ -116,3 +117,20 @@ This is a True or False Boolean
           </Fab>
         </Zoom>
 ```
+
+#### Effect: Conditional Rendering
+We will create an effect: starting out with just the **textarea** as a **single line **,          
+and then when you click on it, it shows the title and the button also only zooms in when that state is set to true.     
+
+The first thing we need to do is hold the state of whether if CreateArea is expanded.
+```javascript
+  const [isExpanded, setExpanded] = useState(false);
+``` 
+I want my `isExpanded` constant to be set to `false` because I don't want it to be expanded     
+and it will be expanded only when the **TextArea** gets clicked on,
+
+
+
+
+
+
