@@ -26,6 +26,8 @@ In this module, we are going to work in the apparence.
 * Floating Action Button
 * Zoom Component
 * Createing Effects: Conditional Rendering
+* Icon in Header
+* Background Image: using [Transparent Textures](https://www.transparenttextures.com/) 
 
 ---
 ---
@@ -119,7 +121,8 @@ This is a True or False Boolean
 ```
 
 #### Effect: Conditional Rendering
-We will create an effect: starting out with just the **textarea** as a **single line **,          
+
+We will create an effect: starting out with just the **textarea** as a **single line**,          
 and then when you click on it, it shows the title and the button also only zooms in when that state is set to true.     
 
 The first thing we need to do is hold the state of whether if CreateArea is expanded.
@@ -127,10 +130,78 @@ The first thing we need to do is hold the state of whether if CreateArea is expa
   const [isExpanded, setExpanded] = useState(false);
 ``` 
 I want my `isExpanded` constant to be set to `false` because I don't want it to be expanded     
-and it will be expanded only when the **TextArea** gets clicked on,
+and it will be expanded only when the **textarea** gets clicked on...     
+so lets add, on **textarea**, an `OnClick` with a method called `expand` (or any name).
+```javascript
+<textarea onClick={expand} ... />
+``` 
+And we will define that method:
+```javascript
+  function expand() {
+    setExpanded(true);
+  }
+``` 
 
+So when this method `expanded` is called (onClick), we're going to set the it to `true`.      
+We can now listen for that in ordedr to render the **input**.        
+Lets put **input** into [Conditional Rendering Statement (using && in React)](https://github.com/ChristianVillalba/react_conditional_rendering)
+```javascript
+        {isExpanded && (
+          <input
+            name="title"
+            onChange={handleChange}
+            value={note.title}
+            placeholder="Title"
+          />
+        )}
+```
+This Statement shows the **input** only when we click on the textArea (otherwise : null)      
 
+The second thing we mentioned is that we want to change this rows to one to start off with      
+and only turn it to three when it's expanded. 
+```javascript
+        <textarea ...
+          rows={isExpanded ? 3 : 1}
+        />
+```
 
+The final thing to address is our fab button:       
+We only want it to show up and zoom in when it shows up only when it's expanded.      
+So instead of hard coding Zoom is true `<Zoom in={true}>`,      
+we're going to use that isExpanded property again:
+```javascript
+        <Zoom in={isExpanded}>
+```
 
+#### Icon in Heading
 
+We want to use the highlight component in our header
+```javascript
+import HighlightIcon from "@material-ui/icons/Highlight";
+```
+And now we can use `<HighlightIcon />` in our `<H1>`
+
+#### Background Image
+
+We can we a website called [Transparent Textures](https://www.transparenttextures.com/)     
+and you can scroll through all of these textures to find one that you like.     
+And in order to use it, we can simply click on it and now we have that pattern saved as a URL.      
+If we go ahead and copy this entire URL where we set our background-image into the body of our CSS:     
+```css
+body {
+  background: #eee;
+  background-color: #0040e3;
+  background-image: url("https://www.transparenttextures.com/patterns/diagmonds-light.png");
+  padding: 0 16px;
+}
+```
+
+## Conclusion: React as Front-End
+
+If we add a couple of notes and then, go ahead and refresh the page, our notes will disappear.      
+
+**React is a front-end library:**
+It's responsible for creating these components, creating the functionality and the styling      
+but it's not responsible for saving your data.
+So if we do want these things to be persisted then we'll have to use a back-end techonlogy
 
